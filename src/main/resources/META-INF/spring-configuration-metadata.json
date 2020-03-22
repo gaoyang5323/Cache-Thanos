@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "encrypt",
+      "type": "com.kakuiwong.bean.Cache-Thanos",
+      "sourceType": "com.kakuiwong.bean.Cache-Thanos"
+    }
+  ],
+  "properties": [
+    {
+      "name": "cache.type",
+      "type": "com.kakuiwong.bean.ThanosCacheTypeE",
+      "description": "",
+      "sourceType": "com.kakuiwong.bean.ThanosCacheTypeE"
+    }
+  ],
+  "hints": []
+}
