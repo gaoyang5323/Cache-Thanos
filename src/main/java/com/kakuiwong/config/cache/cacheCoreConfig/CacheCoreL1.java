@@ -43,6 +43,8 @@ public class CacheCoreL1 implements CacheCoreI {
             Object l1Result = l1Cache.get(key);
             if (l1Result == null) {
                 lock = true;
+                if (lock)
+                    CacheLockL1Util.readUnlock(sync);
                 CacheLockL1Util.writeLock(sync);
                 return this.cacheSet(key, timeout, point);
             }
@@ -55,12 +57,13 @@ public class CacheCoreL1 implements CacheCoreI {
                 }
                 if (!isTimeout) {
                     lock = true;
+                    if (lock)
+                        CacheLockL1Util.readUnlock(sync);
                     CacheLockL1Util.writeLock(sync);
                     return this.cacheSet(key, timeout, point);
                 }
             }
         } finally {
-            CacheLockL1Util.readUnlock(sync);
             if (lock)
                 CacheLockL1Util.writeUnlock(sync);
         }
